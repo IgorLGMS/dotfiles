@@ -97,8 +97,11 @@ source $ZSH/oh-my-zsh.sh
  alias v=vim
  alias vim=nvim
  alias zshconfig="vim ~/.zshrc"
+ alias maketheme="sh ~/randomWalppaper.sh"
  #alias ohmyzsh="vim ~/.oh-my-zsh"
+# Reload last PyWal theme
+cat /Users/igorsilva/.cache/wal/sequences
 
  if [ "$TMUX" = "" ]; then tmux new-session \; split-window -h \; split-window -v \; attach; fi
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#sh ~/tmux_init.sh
+export PATH="$HOME/.local/bin/:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:$HOME/Library/Python/3.7/bin/"

@@ -28,13 +28,15 @@ Plug 'edkolev/tmuxline.vim' " Auto change tmux line to match status line
 Plug 'mileszs/ack.vim' " Ack searching
 "Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
 "Plug 'yuttie/comfortable-motion.vim' " Smooth all the things
-"Plug 'skywind3000/vim-keysound'  " Typing sounds
+Plug 'skywind3000/vim-keysound'  " Typing sounds
+Plug 'dylanaraps/wal.vim' " PyWal Theme
+
 
 call plug#end()
 
 " Enable sounds
-"let g:keysound_enable = 1
-"let g:keysound_theme = 'bubble'
+let g:keysound_enable = 1
+let g:keysound_theme = 'bubble'
 
 " Set leader key
 let mapleader = " "
@@ -170,10 +172,11 @@ iabbrev adn and
 
 set number relativenumber
 
-colorscheme dracula
+"colorscheme dracula
+colorscheme wal
 
 set t_Co=256
-set termguicolors
+"set termguicolors
 syntax enable
 set background=dark " for the dark version
 
@@ -231,6 +234,17 @@ set gdefault
 set ignorecase
 set smartcase
 set hlsearch
+
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " Limit column
 set colorcolumn=180
@@ -396,11 +410,11 @@ if executable('ag')
 endif
 
 " True color
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif"
+"if exists('+termguicolors')
+  "let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  "let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  "set termguicolors
+"endif"
 
 nnoremap <Leader>a :Ack!<Space>
 " Enable mouse

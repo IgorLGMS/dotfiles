@@ -1,5 +1,5 @@
 " Auto install vim plug
-if empty(glob('~/.vim/autoload/plug.vim'))
+ if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
@@ -28,15 +28,17 @@ Plug 'edkolev/tmuxline.vim' " Auto change tmux line to match status line
 Plug 'mileszs/ack.vim' " Ack searching
 "Plug 'terryma/vim-smooth-scroll' " Smooth scrolling
 "Plug 'yuttie/comfortable-motion.vim' " Smooth all the things
-Plug 'skywind3000/vim-keysound'  " Typing sounds
+"Plug 'skywind3000/vim-keysound'  " Typing sounds
 Plug 'dylanaraps/wal.vim' " PyWal Theme
+ "Plug 'deviantfero/wpgtk.vim' " Better PyWal Theme
+ "Plug 'norcalli/nvim-colorizer.lua' "Color highlighter
 
 
 call plug#end()
 
 " Enable sounds
-let g:keysound_enable = 1
-let g:keysound_theme = 'bubble'
+"let g:keysound_enable = 1
+"let g:keysound_theme = 'bubble'
 
 " Set leader key
 let mapleader = " "
@@ -47,7 +49,18 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Source vim config
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Goto matching bracket
+nnoremap <TAB> %
+
+" Esc remap
+inoremap kj <Esc>
+inoremap jk <Esc>
+
+" Duplicate line down
+nnoremap dl yyp
+
 " Disable arrow keys
+vnoremap <Left> :<C-u>echo "No left for you!"<CR>
 nnoremap <Left> :echo "No left for you!"<CR>
 vnoremap <Left> :<C-u>echo "No left for you!"<CR>
 inoremap <Left> <C-o>:echo "No left for you!"<CR>
@@ -174,6 +187,7 @@ set number relativenumber
 
 "colorscheme dracula
 colorscheme wal
+"colorscheme wpgtk
 
 set t_Co=256
 "set termguicolors
@@ -370,6 +384,21 @@ function! s:show_documentation()
   endif
 endfunction
 
+ " You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+
+" Auto update coc
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json']
+
 " Ctrl P --------------------------------------------------
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -419,3 +448,5 @@ endif
 nnoremap <Leader>a :Ack!<Space>
 " Enable mouse
 set mouse=a
+
+ "lua require'colorizer'.setup()

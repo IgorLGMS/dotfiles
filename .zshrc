@@ -1,3 +1,28 @@
+source ~/antigen.zsh
+
+# Plugins
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle git
+antigen bundle heroku
+antigen bundle pip
+antigen bundle lein
+antigen bundle tmux
+antigen bundle command-not-found
+antigen bundle vi-mode
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+
+# Load the theme.
+antigen theme agnoster
+
+# Tell Antigen that you're done.
+antigen apply
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -97,11 +122,29 @@ source $ZSH/oh-my-zsh.sh
  alias v=vim
  alias vim=nvim
  alias zshconfig="vim ~/.zshrc"
- alias maketheme="sh ~/randomWalppaper.sh"
- #alias ohmyzsh="vim ~/.oh-my-zsh"
+ alias maketheme="sh ~/make-theme.sh"
+ alias savetheme="sh ~/save-theme.sh"
+ alias pull="git pull"
+ alias push="git push"
+ alias commit="git commit -n"
+ alias add="git add ."
+ alias start="npm start"
+ alias checkout="git checkout"
+
+# Project aliases
+alias shopfe="cd ~/Documents/shop2grow_store"
+alias shopbo="cd ~/Documents/shop2grow_bo" 
+alias shop2grow="ssh ubuntu@shop2grow.net" 
+
 # Reload last PyWal theme
 cat /Users/igorsilva/.cache/wal/sequences
 
- if [ "$TMUX" = "" ]; then tmux new-session \; split-window -h \; split-window -v \; attach; fi
+ #if [ "$TMUX" = "" ]; then tmux new-session \; split-window -h \; split-window -v \; attach; fi
+
+ if [ "$TMUX" = "" ]; then tmux new-session; fi
+
 #sh ~/tmux_init.sh
+
+export EDITOR='nvim'
+export TERM=xterm-256color
 export PATH="$HOME/.local/bin/:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:$HOME/Library/Python/3.7/bin/"

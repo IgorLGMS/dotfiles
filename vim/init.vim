@@ -32,6 +32,7 @@ Plug 'mileszs/ack.vim' " Ack searching
 Plug 'dylanaraps/wal.vim' " PyWal Theme
  "Plug 'deviantfero/wpgtk.vim' " Better PyWal Theme
  "Plug 'norcalli/nvim-colorizer.lua' "Color highlighter
+Plug 'tpope/vim-abolish' "Case converter
 
 
 call plug#end()
@@ -51,6 +52,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Goto matching bracket
 nnoremap <TAB> %
+vnoremap <TAB> %
 
 " Esc remap
 inoremap kj <Esc>
